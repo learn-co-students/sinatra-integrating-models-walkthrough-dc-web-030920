@@ -8,7 +8,10 @@ class App < Sinatra::Base
 
   post '/' do
     text_from_user = params[:user_text]
-
+    @analyzed_text = TextAnalyzer.new(text_from_user)
+    @str = @analyzed_text.most_used_letter.to_s.split("")[2]
+    @str_count = @analyzed_text.most_used_letter.to_s.split("")[6]
     erb :results
   end
+  
 end
